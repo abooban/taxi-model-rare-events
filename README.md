@@ -52,7 +52,7 @@ The number of physical rides `N` is distinct from the number of MCMC proposal it
 - Bounded scientific tests and an exact rational fixture for estimator regression checks.
 - Historical summary rows and two archived figures selected from stored research outputs.
 
-The earlier full-crossing campaign comprised a combined 52-job set and is treated here as historical validated work. The displayed material is preliminary: tail uncertainty, correlations, window overlap, and normalization uncertainty limit the precision that can be claimed. The selected figures are archived outputs from stored results; raw traces are not distributed in this portfolio snapshot, so the plots cannot be regenerated from this checkout alone. Historical per-run source configurations are incomplete.
+The research record reports completion and validation of an earlier combined 52-job campaign under the full-crossing convention. This curated snapshot contains an 11-row historical terminal-summary table, not the complete per-job audit record or raw traces. The displayed material is preliminary: tail uncertainty, correlations, window overlap, and normalization uncertainty limit the precision that can be claimed. The selected figures are archived outputs from stored results; raw traces are not distributed in this portfolio snapshot, so the plots cannot be regenerated from this checkout alone. Historical per-run source configurations are incomplete.
 
 ### Thesis work in progress
 
