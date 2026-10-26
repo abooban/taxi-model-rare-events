@@ -1,8 +1,18 @@
 # Taxi Model Rare Events
 
-A computational-physics project on rare-event sampling in a stochastic taxi model. This repository combines the original C/Python research code with a reviewed scientific implementation for the *historical full-crossing model*. The bachelor-thesis study is ongoing at the University of Oldenburg.
+> **Research in Progress — University of Oldenburg**
+>
+> This is a real, evolving bachelor-level computational-physics research project, not a finished thesis or a static archive. The historical full-crossing campaign is a completed reference phase; the thesis model and its central scientific questions remain active work.
 
-> **Model convention and research status.** The completed historical 52-job campaign used a full-crossing terminal-cost convention: the final exponential ride contributes its entire sampled length, including the overshoot beyond the destination. Prof. Alexander Hartmann's proposed thesis model charges only the actual remaining distance on the final ride. That is a different terminal-cost rule. The thesis model, its new biased-MCMC study, conditional distributions, and large-deviation analysis are **work in progress**; the archived figures and earlier campaign do not validate those new objectives.
+## Project status
+
+| Status | Work and evidence |
+| --- | --- |
+| **Completed** | A combined **52-job historical campaign** was completed and validated under the full-crossing terminal-cost convention. This public snapshot has 11 historical terminal-summary rows, not the full per-job audit record or raw traces. In the portfolio copy, **37/37 focused scientific tests pass**. An exact rational estimator fixture reconstructs category masses **0.10, 0.25, 0.50, 0.15**; this is a controlled regression fixture, not a physical Taxi Model estimate. |
+| **Currently implemented** | Original C direct-Monte-Carlo and biased-MCMC sources; a reviewed C/Python implementation for the historical full-crossing model; conditional tail calculations; and binless MBAR-style multi-window reweighting, with diagnostics and structural-atom handling. The stored historical figures and 11-row summary are preliminary evidence; their raw input traces and some original run configurations are not included, so those plots and records cannot be independently regenerated from this repository alone. |
+| **Planned / in progress** | Implement and validate the partial-distance terminal-ride rule; build the fixed-uniform-vector MCMC sampler; estimate the joint law and `P(N | C)` / `P(O | C)`; compare Ferrenberg–Swendsen histogram gluing with MBAR-style reweighting; and study finite-size rate functions, atoms versus densities, and possible `L^alpha` scaling. These are research objectives, not completed results. |
+
+> **Important model distinction.** The completed 52-job reference campaign charges the *entire sampled final ride*, including its overshoot beyond the destination. Prof. Alexander Hartmann's proposed thesis model charges only the *actual remaining distance* on the final ride. The two rules define different cost distributions. The current code and archived results use the historical full-crossing convention; they do not validate the thesis model or its planned analyses.
 
 ## Research motivation
 
