@@ -10,7 +10,7 @@
 | --- | --- |
 | **Completed** | A combined **52-job historical campaign** was completed and validated under the full-crossing terminal-cost convention. This public snapshot has 11 historical terminal-summary rows, not the full per-job audit record or raw traces. In the portfolio copy, **37/37 focused scientific tests pass**. An exact rational estimator fixture reconstructs category masses **0.10, 0.25, 0.50, 0.15**; this is a controlled regression fixture, not a physical Taxi Model estimate. |
 | **Currently implemented** | Original C direct-Monte-Carlo and biased-MCMC sources; a reviewed C/Python implementation for the historical full-crossing model; conditional tail calculations; and binless MBAR-style multi-window reweighting, with diagnostics and structural-atom handling. The stored historical figures and 11-row summary are preliminary evidence; their raw input traces and some original run configurations are not included, so those plots and records cannot be independently regenerated from this repository alone. |
-| **Planned / in progress** | Implement and validate the partial-distance terminal-ride rule; build the fixed-uniform-vector MCMC sampler; estimate the joint law and `P(N | C)` / `P(O | C)`; compare Ferrenberg–Swendsen histogram gluing with MBAR-style reweighting; and study finite-size rate functions, atoms versus densities, and possible `L^alpha` scaling. These are research objectives, not completed results. |
+| **Planned / in progress** | Implement and validate the partial-distance terminal-ride rule; build the fixed-uniform-vector MCMC sampler; estimate the joint law and $P(N\mid C)$ / $P(O\mid C)$; compare Ferrenberg–Swendsen histogram gluing with MBAR-style reweighting; and study finite-size rate functions, atoms versus densities, and possible $L^\alpha$ scaling. These are research objectives, not completed results. |
 
 > **Important model distinction.** The completed 52-job reference campaign charges the *entire sampled final ride*, including its overshoot beyond the destination. Prof. Alexander Hartmann's proposed thesis model charges only the *actual remaining distance* on the final ride. The two rules define different cost distributions. The current code and archived results use the historical full-crossing convention; they do not validate the thesis model or its planned analyses.
 
@@ -18,31 +18,48 @@
 
 Rare, high-cost trips are poorly sampled by direct Monte Carlo. Biased sampling can improve coverage, after which reweighting combines observations from multiple bias windows. The ongoing thesis asks how total cost and ride count fluctuate jointly, how observables depend on cost, and how those distributions change as the destination length grows.
 
-The research direction is to investigate the joint statistics of total taxi cost `C` and number of rides `N` using biased MCMC; reconstruct rare-event distributions through multi-histogram reweighting; study `P(N | C)` and, more generally, `P(O | C)`; and examine large-deviation behavior with increasing destination length `L`. Additional observables of interest are the number of long rides and the maximum ride length.
+The research direction is to investigate the joint statistics of total taxi cost `C` and number of rides `N` using biased MCMC; reconstruct rare-event distributions through multi-histogram reweighting; study $P(N\mid C)$ and, more generally, $P(O\mid C)$; and examine large-deviation behavior with increasing destination length `L`. Additional observables of interest are the number of long rides and the maximum ride length.
 
 For finite-size analysis, the planned rate-function convention is
 
-\[
+$
   \phi_L(c)=-\frac{1}{L}\log P_L(C),\qquad c=C/L.
-\]
+$
 
-The meaning of `P_L(C)` must be specified carefully: the model can have discrete probability atoms as well as continuous contributions. Atom probabilities and continuous densities (or finite-bin probabilities with stated widths) will be analyzed separately. Scaling by `L^alpha` is a question to investigate, not an established result.
+The meaning of `P_L(C)` must be specified carefully: the model can have discrete probability atoms as well as continuous contributions. Atom probabilities and continuous densities (or finite-bin probabilities with stated widths) will be analyzed separately. Scaling by $L^\alpha$ is a question to investigate, not an established result.
 
 ## Model definition
 
 Let independent attempted ride lengths be exponentially distributed,
 
-\[
+$
   \eta_i\sim\operatorname{Exp}(\lambda),\qquad X_n=\sum_{i=1}^{n}\eta_i,
-\]
+$
 
 with destination length `L` and tariff parameters `eta_c` and `b`. The per-ride tariff for a ride of length `x` is
 
-\[
+$
   q(x)=1+b\max(x-\eta_c,0).
-\]
+$
 
-The ride count is the first crossing index `N=min{n:X_n >= L}`. In the **historical full-crossing convention**, `C=sum(i=1..N) q(eta_i)`: the entire terminal ride is charged. In the proposed **thesis convention**, the final ride is truncated to the remaining distance `r=L-X_(N-1)`, so its terminal contribution is `q(r)`; earlier rides retain their sampled lengths. This difference can change the cost law and must be reflected in sampling, acceptance probabilities, reweighting, and analysis before thesis results are reported.
+The number of rides is the first crossing index:
+```math
+N=\min\{n\ge 1:X_n\ge L\}.
+```
+
+In the **historical full-crossing convention**, the entire final sampled ride is charged:
+
+```math
+C_{\mathrm{full}}=\sum_{i=1}^{N}q(\eta_i).
+```
+
+In the proposed **thesis convention**, only the remaining distance is charged on the last ride:
+
+```math
+C_{\mathrm{truncated}}=\sum_{i=1}^{N-1}q(\eta_i)+q\bigl(L-X_{N-1}\bigr).
+```
+
+These rules define different cost distributions. Sampling, acceptance probabilities, reweighting, and analysis must follow the chosen convention before thesis results are reported.
 
 The number of physical rides `N` is distinct from the number of MCMC proposal iterations. Existing full-crossing model code and C samplers in this repository implement the historical convention. They must not be interpreted as an implementation of the proposed truncated-terminal-ride model.
 
@@ -50,7 +67,7 @@ The number of physical rides `N` is distinct from the number of MCMC proposal it
 
 - **Direct Monte Carlo:** the original C simulator draws exponential ride lengths and accumulates trips to the threshold.
 - **Biased MCMC:** original C chain programs and a separate reviewed C engine provide historical full-crossing reference implementations. They do not implement the thesis proposal based on a fixed vector of uniform random numbers with randomly modified coordinates.
-- **Conditional calculations:** the validated package includes conditional last-step/tail calculations for the historical model. It does not yet estimate the thesis observables `P(O | C)`.
+- **Conditional calculations:** the validated package includes conditional last-step/tail calculations for the historical model. It does not yet estimate the thesis observables $P(O\mid C)$.
 - **Reweighting:** legacy Python scripts combine biased histograms; `experiments/validated/mbar.py` implements a binless MBAR-style multi-window estimator with common-support and overlap checks. A Ferrenberg–Swendsen histogram-gluing comparison remains planned.
 
 ## Implemented work and work in progress
@@ -68,9 +85,9 @@ The research record reports completion and validation of an earlier combined 52-
 
 - Implement and validate the partial-distance terminal ride convention proposed for the thesis.
 - Build the fixed-uniform-vector MCMC sampler, including proposal and Metropolis rules appropriate to that state representation.
-- Estimate joint and conditional distributions, including `P(N | C)` and `P(O | C)` for additional observables.
+- Estimate joint and conditional distributions, including $P(N\mid C)$ and $P(O\mid C)$ for additional observables.
 - Compare Ferrenberg–Swendsen histogram gluing with the existing MBAR-style approach.
-- Study finite-size rate functions, discrete atoms versus continuous densities, and possible `L^alpha` scaling.
+- Study finite-size rate functions, discrete atoms versus continuous densities, and possible $L^\alpha$ scaling.
 
 No result in the historical campaign establishes these thesis outcomes.
 
@@ -140,7 +157,7 @@ This builds a small local C test target and checks model/conditional formulas, M
 3. Run bounded, documented pilot chains and assess mixing, autocorrelation, and support overlap.
 4. Compare Ferrenberg–Swendsen gluing against MBAR-style reconstruction with uncertainty estimates.
 5. Estimate joint and conditional observable distributions, retaining ride-count and atom structure.
-6. Analyze `phi_L(c)` across destination lengths and test, rather than assume, candidate scaling exponents.
+6. Analyze $\phi_L(c)$ across destination lengths and test, rather than assume, candidate scaling exponents.
 
 ## References and acknowledgement
 
