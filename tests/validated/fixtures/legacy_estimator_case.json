@@ -1,0 +1,50 @@
+{
+  "purpose": "Exact finite mixed-measure regression, not the physical Taxi law",
+  "costs": [
+    6,
+    8,
+    12,
+    20
+  ],
+  "probability_fractions": [
+    "1/10",
+    "1/4",
+    "1/2",
+    "3/20"
+  ],
+  "windows": [
+    {
+      "beta_log2_over_2_multiplier": 0,
+      "normalizer_fraction": "1",
+      "sample_count": 20,
+      "raw_counts": [
+        2,
+        5,
+        10,
+        3
+      ]
+    },
+    {
+      "beta_log2_over_2_multiplier": 1,
+      "normalizer_fraction": "739/20480",
+      "sample_count": 739,
+      "raw_counts": [
+        256,
+        320,
+        160,
+        3
+      ]
+    },
+    {
+      "beta_log2_over_2_multiplier": -1,
+      "normalizer_fraction": "952/5",
+      "sample_count": 238,
+      "raw_counts": [
+        1,
+        5,
+        40,
+        192
+      ]
+    }
+  ]
+}

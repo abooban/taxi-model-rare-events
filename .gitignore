@@ -1,0 +1,25 @@
+# Local Python environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Compiled C outputs and local build/test artifacts
+build/
+*.o
+*.so
+*.a
+*.out
+
+# Simulation traces, temporary outputs, and logs
+csv/
+results/
+logs/
+*.csv.tmp
+*.log
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,4 @@
+# New isolated analysis environment; not needed by standard-library S1 checks.
+# Pinned versions recreate the new Python 3.14/Linux environment, not a claim
+# about exact dependencies of any historical numerical run.
+-r requirements-analysis.lock.txt

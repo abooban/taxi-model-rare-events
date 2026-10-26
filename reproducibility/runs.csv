@@ -1,0 +1,12 @@
+run_id,seed,theta,T,burn_in,MAX_STEPS,lambda,L,eta_c,b,mean_C,acceptance_rate,unfinished_proposal_rate,max_N,evidence_notes
+A,42,2,50000,5000,80,1.0,10.0,2.0,2.0,11.107258,0.951500,0,21,User-recorded successful terminal run; historical source state not retained
+B,123,2,50000,5000,80,1.0,10.0,2.0,2.0,11.151010,0.948940,0,19,User-recorded successful terminal run; historical source state not retained
+C,2026,2,50000,5000,80,1.0,10.0,2.0,2.0,11.125286,0.950860,0,19,User-recorded successful terminal run; historical source state not retained
+D,42,2,200000,5000,80,1.0,10.0,2.0,2.0,11.188970,0.951300,0,21,User-recorded successful terminal run; historical source state not retained
+E,42,2,200000,20000,80,1.0,10.0,2.0,2.0,11.190583,0.951300,0,21,User-recorded successful terminal run; historical source state not retained
+P20,42,2,50000,5000,20,1.0,10.0,2.0,2.0,11.238038,0.827800,0.000140,20,User-recorded MAX_STEPS experiment; historical source state not retained
+P40,42,2,50000,5000,40,1.0,10.0,2.0,2.0,11.199147,0.906320,0.000000,20,User-recorded MAX_STEPS experiment; historical source state not retained
+P80,42,2,50000,5000,80,1.0,10.0,2.0,2.0,11.107258,0.951500,0.000000,21,User-recorded MAX_STEPS experiment; same parameter set as run A; distinct reported context
+N20,42,-6,200000,20000,20,1.0,10.0,2.0,2.0,15.547710,0.909745,0.004095,20,User-recorded negative-theta MAX_STEPS experiment; historical source state not retained
+N40,42,-6,200000,20000,40,1.0,10.0,2.0,2.0,15.603857,0.951095,0.000000,32,User-recorded negative-theta MAX_STEPS experiment; historical source state not retained
+N80,42,-6,200000,20000,80,1.0,10.0,2.0,2.0,15.708682,0.973525,0.000000,29,User-recorded negative-theta MAX_STEPS experiment; historical source state not retained
