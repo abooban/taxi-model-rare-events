@@ -22,9 +22,9 @@ The research direction is to investigate the joint statistics of total taxi cost
 
 For finite-size analysis, the planned rate-function convention is
 
-$
+$$
   \phi_L(c)=-\frac{1}{L}\log P_L(C),\qquad c=C/L.
-$
+$$
 
 The meaning of `P_L(C)` must be specified carefully: the model can have discrete probability atoms as well as continuous contributions. Atom probabilities and continuous densities (or finite-bin probabilities with stated widths) will be analyzed separately. Scaling by $L^\alpha$ is a question to investigate, not an established result.
 
@@ -32,15 +32,15 @@ The meaning of `P_L(C)` must be specified carefully: the model can have discrete
 
 Let independent attempted ride lengths be exponentially distributed,
 
-$
+$$
   \eta_i\sim\operatorname{Exp}(\lambda),\qquad X_n=\sum_{i=1}^{n}\eta_i,
-$
+$$
 
 with destination length `L` and tariff parameters `eta_c` and `b`. The per-ride tariff for a ride of length `x` is
 
-$
+$$
   q(x)=1+b\max(x-\eta_c,0).
-$
+$$
 
 The number of rides is the first crossing index:
 ```math
