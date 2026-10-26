@@ -33,7 +33,7 @@ The meaning of `P_L(C)` must be specified carefully: the model can have discrete
 Let independent attempted ride lengths be exponentially distributed,
 
 $$
-  \eta_i\sim\operatorname{Exp}(\lambda),\qquad X_n=\sum_{i=1}^{n}\eta_i,
+  \eta_i\sim\mathrm{Exp}(\lambda),\qquad X_n=\sum_{i=1}^{n}\eta_i,
 $$
 
 with destination length `L` and tariff parameters `eta_c` and `b`. The per-ride tariff for a ride of length `x` is
